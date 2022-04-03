@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PracticeQuestions
@@ -41,15 +42,25 @@ namespace PracticeQuestions
             //bool isomporphic = IsIsomorphic("egg","add");
             //Console.WriteLine(isomporphic.ToString(), "Press any key to terminate.");
 
+            List<int> sampleNumList = new List<int> { 8, 7, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 11, 6, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 0 };
+
+            Console.WriteLine("TwoElementsSumUpToKOne : " + TwoElementsSumUpToKOne(sampleNumList, 16));
+
+            Console.WriteLine();
+
+            Console.WriteLine("TwoElementsSumUpToKTwo : " + TwoElementsSumUpToKTwo(sampleNumList, 16));
+
+            Console.WriteLine();
+
             Console.ReadKey();
         }
 
-        public static int GetModulus (int firstNumber, int secondNumber)
+        public static int GetModulus(int firstNumber, int secondNumber)
         {
             return firstNumber % secondNumber;
         }
 
-        public static int Adder (int a, int b)
+        public static int Adder(int a, int b)
         {
             return a + b;
         }
@@ -62,7 +73,7 @@ namespace PracticeQuestions
             Console.WriteLine("Enter value Player 2:");
             var playerTwoInput = Console.ReadLine();
 
-            if(playerOneInput.ToLower() != playerTwoInput.ToLower())
+            if (playerOneInput.ToLower() != playerTwoInput.ToLower())
             {
                 return "Player one wins.";
             }
@@ -74,9 +85,9 @@ namespace PracticeQuestions
 
         public static void TheSeventhSon()
         {
-            for(int count = 1; count < 1001; count++)
+            for (int count = 1; count < 1001; count++)
             {
-                if(count % 7 == 0)
+                if (count % 7 == 0)
                 {
                     Console.WriteLine("This is a seventh son. " + count);
                 }
@@ -87,7 +98,7 @@ namespace PracticeQuestions
         {
             int count = 0;
 
-            while(count < 1000)
+            while (count < 1000)
             {
                 if (count % 7 == 0)
                 {
@@ -103,7 +114,7 @@ namespace PracticeQuestions
 
         public static void CounterDisplay()
         {
-            for(int num = 301; num < 650; num++)
+            for (int num = 301; num < 650; num++)
             {
                 Console.WriteLine(num);
             }
@@ -111,9 +122,9 @@ namespace PracticeQuestions
 
         public static void TheJumper(int currentYear)
         {
-            for(int displayYear = currentYear - 4; displayYear > currentYear - 41; displayYear -= 4)
+            for (int displayYear = currentYear - 4; displayYear > currentYear - 41; displayYear -= 4)
             {
-                Console.WriteLine("Here in " + displayYear +  ", this year’s festival has been stopped");
+                Console.WriteLine("Here in " + displayYear + ", this year’s festival has been stopped");
             }
 
             Console.WriteLine();
@@ -139,7 +150,7 @@ namespace PracticeQuestions
                 currentValue = currentValue + 36;
 
                 //Check if divisible by 5
-                if(DivisibleByNum(currentValue, 5) != true)
+                if (DivisibleByNum(currentValue, 5) != true)
                 {
                     return false;
                 }
@@ -163,7 +174,7 @@ namespace PracticeQuestions
             bool DivisibleByNum(int num, int denominator)
             {
                 var outcome = false;
-                if(num % denominator == 0)
+                if (num % denominator == 0)
                 {
                     outcome = true;
                 }
@@ -176,7 +187,7 @@ namespace PracticeQuestions
         {
             for (int num = 1; num < 501; num++)
             {
-                if (((num+19) % 10) == 0)
+                if (((num + 19) % 10) == 0)
                 {
                     Console.WriteLine(num + " This number is a friend of 19");
                 }
@@ -185,9 +196,9 @@ namespace PracticeQuestions
 
         public static void NumberTriangle(int n)
         {
-            for(int i = 1; i < n+1; i++)
+            for (int i = 1; i < n + 1; i++)
             {
-                for(int j = n; j > n-i; j--)
+                for (int j = n; j > n - i; j--)
                 {
                     Console.Write(j + " ");
                 }
@@ -238,6 +249,56 @@ namespace PracticeQuestions
                 dict.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Console.WriteLine);
                 return true;
             }
+        }
+
+        //Using 2 FOR-loops
+        public static bool TwoElementsSumUpToKOne(List<int> numbers, int k)
+        {
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                for (int j = 0; j < numbers.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        if (numbers[i] + numbers[j] == k)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        //  Thinking out loud
+        public static bool TwoElementsSumUpToKTwo(List<int> numbers, int k)
+        {
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                for (int j = 0; j < numbers.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        if (numbers[i] + numbers[j] == k)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                //Can iterating through the list in reverse make a difference?
+                for (int j = numbers.Count - 1; j > 0; j--)
+                {
+                    if (i != j)
+                    {
+                        if (numbers[i] + numbers[j] == k)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }
