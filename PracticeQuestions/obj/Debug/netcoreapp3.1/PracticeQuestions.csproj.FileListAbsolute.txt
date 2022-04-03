@@ -1,0 +1,13 @@
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/bin/Debug/netcoreapp3.1/PracticeQuestions.deps.json
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/bin/Debug/netcoreapp3.1/PracticeQuestions.runtimeconfig.json
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/bin/Debug/netcoreapp3.1/PracticeQuestions.runtimeconfig.dev.json
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/bin/Debug/netcoreapp3.1/PracticeQuestions.dll
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/bin/Debug/netcoreapp3.1/PracticeQuestions.pdb
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.csproj.AssemblyReference.cache
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.AssemblyInfoInputs.cache
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.AssemblyInfo.cs
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.csproj.CoreCompileInputs.cache
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.dll
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.pdb
+/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/obj/Debug/netcoreapp3.1/PracticeQuestions.genruntimeconfig.cache
