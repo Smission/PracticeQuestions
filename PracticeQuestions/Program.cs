@@ -42,15 +42,19 @@ namespace PracticeQuestions
             //bool isomporphic = IsIsomorphic("egg","add");
             //Console.WriteLine(isomporphic.ToString(), "Press any key to terminate.");
 
-            List<int> sampleNumList = new List<int> { 8, 7, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 11, 6, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 0 };
+            //List<int> sampleNumList = new List<int> { 8, 7, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 11, 6, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 7, 0, 0, 0, 0, 15, 3, 0 };
 
-            Console.WriteLine("TwoElementsSumUpToKOne : " + TwoElementsSumUpToKOne(sampleNumList, 16));
+            //Console.WriteLine("TwoElementsSumUpToKOne : " + TwoElementsSumUpToKOne(sampleNumList, 16));
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            Console.WriteLine("TwoElementsSumUpToKTwo : " + TwoElementsSumUpToKTwo(sampleNumList, 16));
+            //Console.WriteLine("TwoElementsSumUpToKTwo : " + TwoElementsSumUpToKTwo(sampleNumList, 16));
 
-            Console.WriteLine();
+            //Console.WriteLine();
+
+            List<int> socks = new List<int> { 10, 20, 20, 10, 10, 30, 50, 10, 20 };
+
+            Console.WriteLine("Number of pairs : " + SockMerchant(socks.Count, socks));
 
             Console.ReadKey();
         }
@@ -299,6 +303,40 @@ namespace PracticeQuestions
                 }
             }
             return false;
+        }
+
+        public class SocksOfSameColour
+        {
+            public int Colour { get; set; }
+            public int NumberOfPairs { get; set; }
+        }
+
+        public static int SockMerchant(int n, List<int> ar)
+        {
+            var sumOfPairs = 0;
+            List<SocksOfSameColour> uniquePairs = new List<SocksOfSameColour>();
+
+            foreach (int sockColour in ar)
+            {
+                int pairsOfSameColor = ar.Where(socCol => socCol == sockColour).Count() / 2;
+
+                if (pairsOfSameColor > 0)
+                {
+                    SocksOfSameColour socksOfSameColour = new SocksOfSameColour();
+                    socksOfSameColour.NumberOfPairs = pairsOfSameColor;
+                    socksOfSameColour.Colour = sockColour;
+
+                    var exists = uniquePairs.Where(uniquePair => uniquePair.Colour == socksOfSameColour.Colour).Any();
+
+                    if (exists != true)
+                    {
+                        uniquePairs.Add(socksOfSameColour);
+                        sumOfPairs += socksOfSameColour.NumberOfPairs;
+                    }
+                }
+            }
+
+            return sumOfPairs;
         }
     }
 }
