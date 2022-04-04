@@ -52,9 +52,39 @@ namespace PracticeQuestions
 
             //Console.WriteLine();
 
-            List<int> socks = new List<int> { 10, 20, 20, 10, 10, 30, 50, 10, 20 };
+            //List<int> socks = new List<int> { 10, 20, 20, 10, 10, 30, 50, 10, 20 };
 
-            Console.WriteLine("Number of pairs : " + SockMerchant(socks.Count, socks));
+            //Console.WriteLine("Number of pairs : " + SockMerchant(socks.Count, socks));
+
+            //Console.WriteLine(CountingValleys(8, "DDUUDDUDUUUD"));
+
+            //List<int> clouds = new List<int> { 0, 0, 0, 1, 0, 0 }; //3 jumps
+
+            //List<int> cloudsTest2 = new List<int> { 0, 0, 1, 0, 0, 1, 0 }; //4 jumps
+
+            //Console.WriteLine("Jumping clouds test 1 " + JumpingOnClouds(clouds));
+
+            //Console.WriteLine("Jumping clouds test 2 " + JumpingOnClouds(cloudsTest2));
+
+            //Console.WriteLine("RepeatedString " + RepeatedString("abc", 7));
+
+            //Console.WriteLine("RepeatedString2 " + RepeatedString2("abc", 7));
+
+            List<int> numbersTestCase1 = new List<int> { 1, 2, 3, 4, 5 };
+
+            List<int> numbersTestCase2 = new List<int> { 3, 2, 1 };
+
+            List<int> numbersTestCase3 = new List<int> { 9, 0, 1 };
+
+            UberInterview(numbersTestCase1);
+
+            Console.WriteLine();
+
+            UberInterview(numbersTestCase2);
+
+            Console.WriteLine();
+
+            UberInterview(numbersTestCase3);
 
             Console.ReadKey();
         }
@@ -337,6 +367,78 @@ namespace PracticeQuestions
             }
 
             return sumOfPairs;
+        }
+
+        //public static int CountingValleys(int steps, string path)
+        //{
+        //    int currentPoint = 1;
+        //    char[] pathCharArr = path.ToCharArray();
+
+        //    foreach (char c in pathCharArr)
+        //    {
+        //        if ((c.ToString()).ToLower() == "D".ToLower())
+        //        {
+        //            currentPoint = currentPoint - 1;
+        //        }
+        //        else
+        //        {
+        //            currentPoint = currentPoint + 1;
+        //        }
+        //    }
+        //    return currentPoint;
+        //}
+
+        public static int JumpingOnClouds(List<int> c)
+        {
+            int stepsTaken = 0;
+            int index = 0;
+            while (index < c.Count - 1)
+            {
+                if ((index + 2 < c.Count) && (c[index + 2] == 0))
+                {
+                    index += 2;
+                    stepsTaken++;
+                }
+                else
+                {
+                    index += 1;
+                    stepsTaken++;
+                }
+            }
+
+            return stepsTaken++; ;
+        }
+
+        public static void UberInterview (List<int> numbers)
+        {
+            List<int> updatedArray = new List<int>();
+
+            for(int i = 0; i < numbers.Count; i++)
+            {
+                int product = 1;
+
+                for (int j = 0; j < numbers.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        product *= numbers[j];
+
+                        if(j == numbers.Count - 1)
+                        {
+                            updatedArray.Add(product);
+                        }
+                    }
+                    else if(updatedArray.Count == numbers.Count - 1)
+                    {
+                        updatedArray.Add(product);
+                    }
+                }
+            }
+
+            foreach(int n in updatedArray)
+            {
+                Console.Write(n + " ");
+            }
         }
     }
 }
