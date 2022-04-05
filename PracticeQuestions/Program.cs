@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace PracticeQuestions
 {
@@ -70,21 +71,23 @@ namespace PracticeQuestions
 
             //Console.WriteLine("RepeatedString2 " + RepeatedString2("abc", 7));
 
-            List<int> numbersTestCase1 = new List<int> { 1, 2, 3, 4, 5 };
+            //List<int> numbersTestCase1 = new List<int> { 1, 2, 3, 4, 5 };
 
-            List<int> numbersTestCase2 = new List<int> { 3, 2, 1 };
+            //List<int> numbersTestCase2 = new List<int> { 3, 2, 1 };
 
-            List<int> numbersTestCase3 = new List<int> { 9, 0, 1 };
+            //List<int> numbersTestCase3 = new List<int> { 9, 0, 1 };
 
-            UberInterview(numbersTestCase1);
+            //UberInterview(numbersTestCase1);
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            UberInterview(numbersTestCase2);
+            //UberInterview(numbersTestCase2);
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            UberInterview(numbersTestCase3);
+            //UberInterview(numbersTestCase3);
+
+            TestBinaryQuestion();
 
             Console.ReadKey();
         }
@@ -369,24 +372,24 @@ namespace PracticeQuestions
             return sumOfPairs;
         }
 
-        //public static int CountingValleys(int steps, string path)
-        //{
-        //    int currentPoint = 1;
-        //    char[] pathCharArr = path.ToCharArray();
+        public static int CountingValleys(int steps, string path)
+        {
+            int currentPoint = 1;
+            char[] pathCharArr = path.ToCharArray();
 
-        //    foreach (char c in pathCharArr)
-        //    {
-        //        if ((c.ToString()).ToLower() == "D".ToLower())
-        //        {
-        //            currentPoint = currentPoint - 1;
-        //        }
-        //        else
-        //        {
-        //            currentPoint = currentPoint + 1;
-        //        }
-        //    }
-        //    return currentPoint;
-        //}
+            foreach (char c in pathCharArr)
+            {
+                if ((c.ToString()).ToLower() == "D".ToLower())
+                {
+                    currentPoint = currentPoint - 1;
+                }
+                else
+                {
+                    currentPoint = currentPoint + 1;
+                }
+            }
+            return currentPoint;
+        }
 
         public static int JumpingOnClouds(List<int> c)
         {
@@ -409,11 +412,59 @@ namespace PracticeQuestions
             return stepsTaken++; ;
         }
 
-        public static void UberInterview (List<int> numbers)
+        public static long RepeatedString(string s, long n)
+        {
+            if (s.Length == 1)
+            {
+                return n;
+            }
+            else
+            {
+                char[] pathCharArr = s.ToCharArray();
+                int index = 0;
+
+                string finalString = "";
+
+                while (finalString.Length != n)
+                {
+                    if (index < s.Length)
+                    {
+                        finalString += pathCharArr[index].ToString();
+                        index++;
+                    }
+                    else
+                    {
+                        index = 0;
+                        finalString += pathCharArr[index].ToString();
+                        index++;
+                    }
+                }
+
+                return finalString.ToList().Where(character => character.ToString() == "a").Count();
+            }
+        }
+
+        public static long RepeatedString2(string s, long n)
+        {
+            if (s.Length == 1)
+            {
+                return n;
+            }
+            else
+            {
+                var aInS = s.ToList().Where(character => character.ToString() == "a").Count();
+
+                long repetitions = n / s.Length;
+
+                return (repetitions * aInS) + (n % s.Length);
+            }
+        }
+
+        public static void UberInterview(List<int> numbers)
         {
             List<int> updatedArray = new List<int>();
 
-            for(int i = 0; i < numbers.Count; i++)
+            for (int i = 0; i < numbers.Count; i++)
             {
                 int product = 1;
 
@@ -423,22 +474,50 @@ namespace PracticeQuestions
                     {
                         product *= numbers[j];
 
-                        if(j == numbers.Count - 1)
+                        if (j == numbers.Count - 1)
                         {
                             updatedArray.Add(product);
                         }
                     }
-                    else if(updatedArray.Count == numbers.Count - 1)
+                    else if (updatedArray.Count == numbers.Count - 1)
                     {
                         updatedArray.Add(product);
                     }
                 }
             }
 
-            foreach(int n in updatedArray)
+            foreach (int n in updatedArray)
             {
                 Console.Write(n + " ");
             }
+        }
+
+        public class Root
+        {
+            public dynamic Data { get; set; }
+            public dynamic Left { get; set; }
+            public dynamic Right { get; set; }
+        }
+
+        public static string SerializeRoot(Root root)
+        {
+            return JsonConvert.SerializeObject(root);
+        }
+
+        public static Root DeserializeRoot(string root)
+        {
+            return JsonConvert.DeserializeObject<Root>(root);
+        }
+
+        public static void TestBinaryQuestion()
+        {
+            Root root = new Root();
+
+            root.Data = "data";
+            root.Left = "left";
+            root.Right = "right";
+
+            Console.WriteLine(DeserializeRoot(SerializeRoot(root)).Left == root.Left);
         }
     }
 }
