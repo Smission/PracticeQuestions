@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace PracticeQuestions
 {
@@ -70,21 +71,47 @@ namespace PracticeQuestions
 
             //Console.WriteLine("RepeatedString2 " + RepeatedString2("abc", 7));
 
-            List<int> numbersTestCase1 = new List<int> { 1, 2, 3, 4, 5 };
+            //List<int> numbersTestCase1 = new List<int> { 1, 2, 3, 4, 5 };
 
-            List<int> numbersTestCase2 = new List<int> { 3, 2, 1 };
+            //List<int> numbersTestCase2 = new List<int> { 3, 2, 1 };
 
-            List<int> numbersTestCase3 = new List<int> { 9, 0, 1 };
+            //List<int> numbersTestCase3 = new List<int> { 9, 0, 1 };
 
-            UberInterview(numbersTestCase1);
+            //UberInterview(numbersTestCase1);
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            UberInterview(numbersTestCase2);
+            //UberInterview(numbersTestCase2);
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            UberInterview(numbersTestCase3);
+            //UberInterview(numbersTestCase3);
+
+            //TestBinaryQuestion();
+
+            List<int> equalizeArr = new List<int> { 3, 3, 2, 1, 3 };
+
+            Console.WriteLine(EqualizeArray(equalizeArr));
+
+            List<int> lowestPossibleIntcase1 = new List<int> { 3, 1, -1, 1 }; //2
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntcase1));
+
+            List<int> lowestPossibleIntCase2 = new List<int> { 1, 2, 0 }; //3
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase2));
+
+            List<int> lowestPossibleIntCase3 = new List<int> { 0, 0, 0, 0 }; //1
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase3));
+
+            List<int> lowestPossibleIntCase4 = new List<int> { 1, 2, 2, 3, 0 }; //4
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase4));
+
+            List<int> lowestPossibleIntCase5 = new List<int> { 0, -1, 4, 3, 1 }; //2
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase5));
 
             Console.ReadKey();
         }
@@ -369,24 +396,24 @@ namespace PracticeQuestions
             return sumOfPairs;
         }
 
-        //public static int CountingValleys(int steps, string path)
-        //{
-        //    int currentPoint = 1;
-        //    char[] pathCharArr = path.ToCharArray();
+        public static int CountingValleys(int steps, string path)
+        {
+            int currentPoint = 1;
+            char[] pathCharArr = path.ToCharArray();
 
-        //    foreach (char c in pathCharArr)
-        //    {
-        //        if ((c.ToString()).ToLower() == "D".ToLower())
-        //        {
-        //            currentPoint = currentPoint - 1;
-        //        }
-        //        else
-        //        {
-        //            currentPoint = currentPoint + 1;
-        //        }
-        //    }
-        //    return currentPoint;
-        //}
+            foreach (char c in pathCharArr)
+            {
+                if ((c.ToString()).ToLower() == "D".ToLower())
+                {
+                    currentPoint = currentPoint - 1;
+                }
+                else
+                {
+                    currentPoint = currentPoint + 1;
+                }
+            }
+            return currentPoint;
+        }
 
         public static int JumpingOnClouds(List<int> c)
         {
@@ -409,11 +436,59 @@ namespace PracticeQuestions
             return stepsTaken++; ;
         }
 
-        public static void UberInterview (List<int> numbers)
+        public static long RepeatedString(string s, long n)
+        {
+            if (s.Length == 1)
+            {
+                return n;
+            }
+            else
+            {
+                char[] pathCharArr = s.ToCharArray();
+                int index = 0;
+
+                string finalString = "";
+
+                while (finalString.Length != n)
+                {
+                    if (index < s.Length)
+                    {
+                        finalString += pathCharArr[index].ToString();
+                        index++;
+                    }
+                    else
+                    {
+                        index = 0;
+                        finalString += pathCharArr[index].ToString();
+                        index++;
+                    }
+                }
+
+                return finalString.ToList().Where(character => character.ToString() == "a").Count();
+            }
+        }
+
+        public static long RepeatedString2(string s, long n)
+        {
+            if (s.Length == 1)
+            {
+                return n;
+            }
+            else
+            {
+                var aInS = s.ToList().Where(character => character.ToString() == "a").Count();
+
+                long repetitions = n / s.Length;
+
+                return (repetitions * aInS) + (n % s.Length);
+            }
+        }
+
+        public static void UberInterview(List<int> numbers)
         {
             List<int> updatedArray = new List<int>();
 
-            for(int i = 0; i < numbers.Count; i++)
+            for (int i = 0; i < numbers.Count; i++)
             {
                 int product = 1;
 
@@ -423,22 +498,113 @@ namespace PracticeQuestions
                     {
                         product *= numbers[j];
 
-                        if(j == numbers.Count - 1)
+                        if (j == numbers.Count - 1)
                         {
                             updatedArray.Add(product);
                         }
                     }
-                    else if(updatedArray.Count == numbers.Count - 1)
+                    else if (updatedArray.Count == numbers.Count - 1)
                     {
                         updatedArray.Add(product);
                     }
                 }
             }
 
-            foreach(int n in updatedArray)
+            foreach (int n in updatedArray)
             {
                 Console.Write(n + " ");
             }
+        }
+
+        public class Root
+        {
+            public dynamic Data { get; set; }
+            public dynamic Left { get; set; }
+            public dynamic Right { get; set; }
+        }
+
+        public static string SerializeRoot(Root root)
+        {
+            return JsonConvert.SerializeObject(root);
+        }
+
+        public static Root DeserializeRoot(string root)
+        {
+            return JsonConvert.DeserializeObject<Root>(root);
+        }
+
+        public static void TestBinaryQuestion()
+        {
+            Root root = new Root();
+
+            root.Data = "data";
+            root.Left = "left";
+            root.Right = "right";
+
+            Console.WriteLine(DeserializeRoot(SerializeRoot(root)).Left == root.Left);
+        }
+
+        public class IntegerOccurences
+        {
+            public int Number { get; set; }
+            public int Count { get; set; }
+        }
+
+        public static int EqualizeArray(List<int> arr)
+        {
+            List<IntegerOccurences> integerOccurences = new List<IntegerOccurences>();
+
+            foreach(int number in arr)
+            {
+                IntegerOccurences existingIntegerOccurence = integerOccurences.Where(occurence => occurence.Number == number).FirstOrDefault();
+
+                if(existingIntegerOccurence == null)
+                {
+                    IntegerOccurences newIntegerOccurence = new IntegerOccurences();
+
+                    newIntegerOccurence.Number = number;
+                    newIntegerOccurence.Count = arr.Where(num => num == number).Count();
+
+                    integerOccurences.Add(newIntegerOccurence);
+                }
+            }
+
+            var mostOccuring = integerOccurences.OrderByDescending(occ => occ.Count).FirstOrDefault();
+
+            return arr.Count - mostOccuring.Count;
+        }
+
+        public static int LowestPositiveInteger (List<int> numbers)
+        {
+            //Remove negative numbers
+            numbers.RemoveAll(number => number < 0);
+
+            ////Remove duplicates
+            numbers = numbers.Distinct().ToList();
+
+            //Sort list
+            numbers.Sort();
+
+            int nextNum = numbers[0];
+
+            for(int i=numbers[0]; i<numbers.Count; i++)
+            {
+                if(numbers[i] != nextNum && (numbers[i] == numbers[^1]) == false)
+                {
+                    return nextNum;
+                }
+                else if(numbers[i] == numbers[^1])
+                {
+                    nextNum++;
+                    return nextNum;
+                }
+                else
+                {
+                    nextNum++;
+                }
+            }
+
+            return nextNum;
         }
     }
 }
