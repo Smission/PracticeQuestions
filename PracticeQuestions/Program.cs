@@ -87,7 +87,31 @@ namespace PracticeQuestions
 
             //UberInterview(numbersTestCase3);
 
-            TestBinaryQuestion();
+            //TestBinaryQuestion();
+
+            List<int> equalizeArr = new List<int> { 3, 3, 2, 1, 3 };
+
+            Console.WriteLine(EqualizeArray(equalizeArr));
+
+            List<int> lowestPossibleIntcase1 = new List<int> { 3, 1, -1, 1 }; //2
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntcase1));
+
+            List<int> lowestPossibleIntCase2 = new List<int> { 1, 2, 0 }; //3
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase2));
+
+            List<int> lowestPossibleIntCase3 = new List<int> { 0, 0, 0, 0 }; //1
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase3));
+
+            List<int> lowestPossibleIntCase4 = new List<int> { 1, 2, 2, 3, 0 }; //4
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase4));
+
+            List<int> lowestPossibleIntCase5 = new List<int> { 0, -1, 4, 3, 1 }; //2
+
+            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase5));
 
             Console.ReadKey();
         }
@@ -518,6 +542,69 @@ namespace PracticeQuestions
             root.Right = "right";
 
             Console.WriteLine(DeserializeRoot(SerializeRoot(root)).Left == root.Left);
+        }
+
+        public class IntegerOccurences
+        {
+            public int Number { get; set; }
+            public int Count { get; set; }
+        }
+
+        public static int EqualizeArray(List<int> arr)
+        {
+            List<IntegerOccurences> integerOccurences = new List<IntegerOccurences>();
+
+            foreach(int number in arr)
+            {
+                IntegerOccurences existingIntegerOccurence = integerOccurences.Where(occurence => occurence.Number == number).FirstOrDefault();
+
+                if(existingIntegerOccurence == null)
+                {
+                    IntegerOccurences newIntegerOccurence = new IntegerOccurences();
+
+                    newIntegerOccurence.Number = number;
+                    newIntegerOccurence.Count = arr.Where(num => num == number).Count();
+
+                    integerOccurences.Add(newIntegerOccurence);
+                }
+            }
+
+            var mostOccuring = integerOccurences.OrderByDescending(occ => occ.Count).FirstOrDefault();
+
+            return arr.Count - mostOccuring.Count;
+        }
+
+        public static int LowestPositiveInteger (List<int> numbers)
+        {
+            //Remove negative numbers
+            numbers.RemoveAll(number => number < 0);
+
+            ////Remove duplicates
+            numbers = numbers.Distinct().ToList();
+
+            //Sort list
+            numbers.Sort();
+
+            int nextNum = numbers[0];
+
+            for(int i=numbers[0]; i<numbers.Count; i++)
+            {
+                if(numbers[i] != nextNum && (numbers[i] == numbers[^1]) == false)
+                {
+                    return nextNum;
+                }
+                else if(numbers[i] == numbers[^1])
+                {
+                    nextNum++;
+                    return nextNum;
+                }
+                else
+                {
+                    nextNum++;
+                }
+            }
+
+            return nextNum;
         }
     }
 }
