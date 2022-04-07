@@ -119,9 +119,17 @@ namespace PracticeQuestions
 
             //Staircase(5);
 
-            List<int> miniMaxSum = new List<int> { 1, 2, 3, 4, 5 };
+            //List<int> miniMaxSum = new List<int> { 1, 2, 3, 4, 5 };
 
-            MiniMaxSum(miniMaxSum);
+            //MiniMaxSum(miniMaxSum);
+
+            List<int> row1 = new List<int> { 11, 2, 4 };
+            List<int> row2 = new List<int> { 4, 5, 6 };
+            List<int> row3 = new List<int> { 10, 8, - 12 };
+
+            List<List<int>> testInput = new List<List<int>> { row1, row2, row3 };
+
+            Console.WriteLine(DiagonalDifference(testInput));
 
             Console.ReadKey();
         }
@@ -668,6 +676,28 @@ namespace PracticeQuestions
             sums.Sort();
 
             Console.Write(sums[0] + " " + sums[arr.Count-1]);
+        }
+
+        public static int DiagonalDifference(List<List<int>> arr)
+        {
+            int sumOfLeftDiagonal = 0;
+            int sumOfRightDiagonal = 0;
+
+            int rightCounter = 0;
+
+            for(int k = 0; k < arr.Count; k++)
+            {
+                sumOfLeftDiagonal += arr[k][k];
+
+                var test = arr[k][arr.Count-1-k];
+                //for(int j = arr.Count-1; j > -1; j--)
+                //{
+                //    //var test = arr[0][2];
+                //    var test = arr[k][j];
+                //}
+            }
+
+            return Math.Abs(sumOfLeftDiagonal - sumOfRightDiagonal);
         }
     }
 }
