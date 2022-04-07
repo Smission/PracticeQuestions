@@ -123,13 +123,17 @@ namespace PracticeQuestions
 
             //MiniMaxSum(miniMaxSum);
 
-            List<int> row1 = new List<int> { 11, 2, 4 };
-            List<int> row2 = new List<int> { 4, 5, 6 };
-            List<int> row3 = new List<int> { 10, 8, - 12 };
+            //List<int> row1 = new List<int> { 11, 2, 4 };
+            //List<int> row2 = new List<int> { 4, 5, 6 };
+            //List<int> row3 = new List<int> { 10, 8, - 12 };
 
-            List<List<int>> testInput = new List<List<int>> { row1, row2, row3 };
+            //List<List<int>> testInput = new List<List<int>> { row1, row2, row3 };
 
-            Console.WriteLine(DiagonalDifference(testInput));
+            //Console.WriteLine(DiagonalDifference(testInput));
+
+            Console.WriteLine(Car(Cons(3,4)));
+
+            Console.WriteLine(Cdr(Cons(3, 4)));
 
             Console.ReadKey();
         }
@@ -683,21 +687,39 @@ namespace PracticeQuestions
             int sumOfLeftDiagonal = 0;
             int sumOfRightDiagonal = 0;
 
-            int rightCounter = 0;
-
             for(int k = 0; k < arr.Count; k++)
             {
                 sumOfLeftDiagonal += arr[k][k];
 
-                var test = arr[k][arr.Count-1-k];
-                //for(int j = arr.Count-1; j > -1; j--)
-                //{
-                //    //var test = arr[0][2];
-                //    var test = arr[k][j];
-                //}
+                sumOfRightDiagonal += arr[k][arr.Count-1-k];
             }
 
             return Math.Abs(sumOfLeftDiagonal - sumOfRightDiagonal);
+        }
+
+        public class Pair
+        {
+            public dynamic First { get; set; }
+            public dynamic Last { get; set; }
+        }
+
+        public static dynamic Cons(dynamic a, dynamic b)
+        {
+            Pair pair = new Pair();
+
+            pair.First = a;
+            pair.Last = b;
+            return pair;
+        }
+
+        public static dynamic Car(Pair pair)
+        {
+            return pair.First;
+        }
+
+        public static dynamic Cdr(Pair pair)
+        {
+            return pair.Last;
         }
     }
 }
