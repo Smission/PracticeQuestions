@@ -89,29 +89,39 @@ namespace PracticeQuestions
 
             //TestBinaryQuestion();
 
-            List<int> equalizeArr = new List<int> { 3, 3, 2, 1, 3 };
+            //List<int> equalizeArr = new List<int> { 3, 3, 2, 1, 3 };
 
-            Console.WriteLine(EqualizeArray(equalizeArr));
+            //Console.WriteLine(EqualizeArray(equalizeArr));
 
-            List<int> lowestPossibleIntcase1 = new List<int> { 3, 1, -1, 1 }; //2
+            //List<int> lowestPossibleIntcase1 = new List<int> { 3, 1, -1, 1 }; //2
 
-            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntcase1));
+            //Console.WriteLine(LowestPositiveInteger(lowestPossibleIntcase1));
 
-            List<int> lowestPossibleIntCase2 = new List<int> { 1, 2, 0 }; //3
+            //List<int> lowestPossibleIntCase2 = new List<int> { 1, 2, 0 }; //3
 
-            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase2));
+            //Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase2));
 
-            List<int> lowestPossibleIntCase3 = new List<int> { 0, 0, 0, 0 }; //1
+            //List<int> lowestPossibleIntCase3 = new List<int> { 0, 0, 0, 0 }; //1
 
-            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase3));
+            //Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase3));
 
-            List<int> lowestPossibleIntCase4 = new List<int> { 1, 2, 2, 3, 0 }; //4
+            //List<int> lowestPossibleIntCase4 = new List<int> { 1, 2, 2, 3, 0 }; //4
 
-            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase4));
+            //Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase4));
 
-            List<int> lowestPossibleIntCase5 = new List<int> { 0, -1, 4, 3, 1 }; //2
+            //List<int> lowestPossibleIntCase5 = new List<int> { 0, -1, 4, 3, 1 }; //2
 
-            Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase5));
+            //Console.WriteLine(LowestPositiveInteger(lowestPossibleIntCase5));
+
+            //List<int> plusMin = new List<int> { 1, 1, 0, -2, -1 };
+
+            //PlusMinus(plusMin);
+
+            //Staircase(5);
+
+            List<int> miniMaxSum = new List<int> { 1, 2, 3, 4, 5 };
+
+            MiniMaxSum(miniMaxSum);
 
             Console.ReadKey();
         }
@@ -605,6 +615,59 @@ namespace PracticeQuestions
             }
 
             return nextNum;
+        }
+
+        public static void PlusMinus(List<int> arr)
+        {
+            var x = arr.Where(num => num == 0).Count();
+            float numOfZeros = arr.Where(num => num == 0).Count() / (float)arr.Count;
+            float numOfPositive = arr.Where(num => num > 0).Count() / (float)arr.Count;
+            float numOfNegative = arr.Where(num => num < 0).Count() / (float)arr.Count;
+
+            Console.WriteLine(numOfPositive);
+            Console.WriteLine(numOfNegative);
+            Console.WriteLine(numOfZeros);
+        }
+
+        public static void Staircase(int n)
+        {
+            for (int i = 1; i < n+1; i++)
+            {
+                Console.WriteLine(PrintStr(n-i, " ") + PrintStr(i, "#"));
+            }
+
+            string PrintStr(int i, string str)
+            {
+                string returnStr = "";
+                for(int a=0 ; a<i; a++)
+                {
+                    returnStr += str;
+                }
+
+                return returnStr;
+            }
+        }
+
+        public static void MiniMaxSum(List<int> arr)
+        {
+            List<long> sums = new List<long> ();
+
+            for(int i=0; i<arr.Count; i++)
+            {
+                long sum = 0;
+                for (int j = 0; j < arr.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        sum += arr[j];
+                    }
+                }
+                sums.Add(sum);
+            }
+
+            sums.Sort();
+
+            Console.Write(sums[0] + " " + sums[arr.Count-1]);
         }
     }
 }
