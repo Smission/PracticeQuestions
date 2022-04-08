@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "OkcWoRiEVUwAvFoJJjgxnQoUVZ/xGFsLLxx7JDFaR8L3ijcVzgTRnoR7H6SmRkImaOf+gjHqBhytq0VugABkCw==",
+  "dgSpecHash": "xPO9pp5035jIOV+i+toFC2XvU8WUYVMua39SF2NzBvqr1w3b1pgTfYN9xY8nq5Ptt2AO3vyIrRbMniY4oWeJZw==",
   "success": true,
-  "projectFilePath": "/Users/mandlenkosishezi/Projects/PracticeQuestions/PracticeQuestions/PracticeQuestions.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/mandlenkosishezi/Documents/Personal/PracticeQuestions/PracticeQuestions/PracticeQuestions.csproj",
+  "expectedPackageFiles": [
+    "/Users/mandlenkosishezi/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

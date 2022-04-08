@@ -131,9 +131,17 @@ namespace PracticeQuestions
 
             //Console.WriteLine(DiagonalDifference(testInput));
 
-            Console.WriteLine(Car(Cons(3,4)));
+            //Console.WriteLine(Car(Cons(3,4)));
 
-            Console.WriteLine(Cdr(Cons(3, 4)));
+            //Console.WriteLine(Cdr(Cons(3, 4)));
+
+            //List<int> nonDivisibleSub = new List<int> { 1, 7, 2, 4 };
+
+            //Console.WriteLine(NonDivisibleSubset(3, nonDivisibleSub));
+
+            List<int> gradingProb = new List<int> { 73, 67, 38, 33 };
+
+            var x = GradingStudents(gradingProb);
 
             Console.ReadKey();
         }
@@ -720,6 +728,35 @@ namespace PracticeQuestions
         public static dynamic Cdr(Pair pair)
         {
             return pair.Last;
+        }
+
+       
+
+        public static List<int> GradingStudents(List<int> grades)
+        {
+            List<int> finalGrades = new List<int>();
+
+            foreach(int grade in grades)
+            {
+                if(grade < 38 || (grade % 5) == 0)
+                {
+                    finalGrades.Add(grade);
+                }
+                else if((grade + 2) % 5 == 0)
+                {
+                    finalGrades.Add(grade + 2);
+                }
+                else if((grade + 1) % 5 == 0)
+                {
+                    finalGrades.Add(grade + 1);
+                }
+                else
+                {
+                    finalGrades.Add(grade);
+                }
+            }
+
+            return finalGrades;
         }
     }
 }
